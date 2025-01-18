@@ -23,7 +23,11 @@ paths:
       operationId: BatchParameterType
       responses:
         '200':
-          $ref: '#/components/schemas/BatchParameterType'
+          description: A list of users
+          content:
+            application/json:
+              schema:        
+                $ref: '#/components/schemas/BatchParameterType'
 components:
   schemas:
     BatchParameterType:
