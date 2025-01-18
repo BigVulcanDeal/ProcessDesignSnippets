@@ -1,0 +1,468 @@
+openapi: 3.0.1
+info:
+  title: B2MML Inspired Schema Fragments
+  version: '0.1'
+  description: |
+    # Overview
+    Some Schema Fragments for Process Model Definitions, inspired by B2MML
+
+externalDocs:
+  url: https://github.com/MESAInternational/B2MML-BatchML
+servers:
+  - url: http://bogus-host:1234
+tags:
+  - name: BatchInformation
+    description: Main Type Definitions for Batch Structure
+
+paths:
+  /BatchInformation/BatchParameterType:
+    get:
+      tags:
+        - BatchInformation
+      summary: Bogus endpoint to encapsulate 'BatchParameterType' definition
+      operationId: BatchParameterType
+      responses:
+        '200':
+          $ref: '#/components/schemas/BatchParameterType'
+components:
+  schemas:
+    BatchParameterType:
+      additionalProperties: false
+      properties:
+        Description:
+          $ref: '#/components/schemas/DescriptionType'
+        ID:
+          $ref: '#/components/schemas/IdentifierType'
+        Parameter:
+          type: array
+          items: 
+            $ref: '#/components/schemas/BatchParameterType'       
+        ParameterSubType:
+          items:
+            "$ref": "#/components/schemas/ParameterSubTypeType"
+          type: array
+        ParameterType:
+          "$ref": "#/components/schemas/ParameterTypeType"
+        ScaleReference:
+          "$ref": "#/components/schemas/ScaleReferenceType"
+        Scaled:
+          "$ref": "#/components/schemas/ScaledType"
+        Value:
+          items:
+            "$ref": "#/components/schemas/BatchValueType"
+          type: array
+      required:
+      - ID
+      - ParameterType
+      type: object   
+    BatchValueType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: string
+          #- string
+          #- number
+          #- boolean
+        DataInterpretation:
+          "$ref": "#/components/schemas/DataInterpretationType"
+        DataType:
+          "$ref": "#/components/schemas/DataTypeType"
+        EnumerationSetID:
+          items:
+            "$ref": "#/components/schemas/IdentifierType"
+          type: array
+        UnitOfMeasure:
+          "$ref": "#/components/schemas/UnitOfMeasureType"
+        ValueString:
+          items:
+            "$ref": "#/components/schemas/ValueStringType"
+          minItems: 1
+          type: array
+      required:
+      - DataInterpretation
+      - DataType
+      - UnitOfMeasure
+      - ValueString
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean    
+    DataTypeType:
+      additionalProperties: false
+      properties:
+        "$":
+          enum:
+          - Amount
+          - BinaryObject
+          - Code
+          - DateTime
+          - Identifier
+          - Indicator
+          - Measure
+          - Numeric
+          - Quantity
+          - Text
+          - string
+          - byte
+          - unsignedByte
+          - binary
+          - integer
+          - positiveInteger
+          - negativeInteger
+          - nonNegativeInteger
+          - nonPositiveInteger
+          - int
+          - unsignedInt
+          - long
+          - unsignedLong
+          - short
+          - unsignedShort
+          - decimal
+          - float
+          - double
+          - boolean
+          - time
+          - timeInstant
+          - timePeriod
+          - duration
+          - date
+          - dateTime
+          - month
+          - year
+          - century
+          - recurringDay
+          - recurringDate
+          - recurringDuration
+          - Name
+          - QName
+          - NCName
+          - uriReference
+          - language
+          - ID
+          - IDREF
+          - IDREFS
+          - ENTITY
+          - ENTITIES
+          - NOTATION
+          - NMTOKEN
+          - NMTOKENS
+          - Enumeration
+          - SVG
+          - Other
+          type: string
+        "@OtherValue":
+          "$ref": "#/components/schemas/xsd_string"
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    DataInterpretationType:
+      additionalProperties: false
+      properties:
+        "$":
+          enum:
+          - Constant
+          - Reference
+          - Equation
+          - External
+          - Other
+          type: string
+        "@OtherValue":
+          "$ref": "#/components/schemas/xsd_string"
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    DescriptionType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: string
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    IdentifierType:
+      additionalProperties: false
+      properties:
+        "$":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemeAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemeAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemeDataURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemeID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemeName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemeVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+      type: object
+      # - object 
+      # - string
+      # - number
+      # - boolean
+    ParameterSubTypeType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: string
+        "@schemeAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemeAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemeDataURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemeID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemeName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemeVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    ParameterTypeType:
+      additionalProperties: false
+      properties:
+        "$":
+          enum:
+          - ProcessInput
+          - ProcessOutput
+          - ProcessParameter
+          - Other
+          type: string
+        "@OtherValue":
+          "$ref": "#/components/schemas/xsd_string"
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean      
+    ScaleReferenceType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: number
+        "@unitCode":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@unitCodeListVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    ScaledType:
+      additionalProperties: false
+      properties:
+        "$":
+          enum:
+          - 'Yes'
+          - 'No'
+          type: string
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+      type: object
+      # - object
+      # - number
+      # - boolean
+    UnitOfMeasureType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: string
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemeURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    ValueStringType:
+      additionalProperties: false
+      properties:
+        "$":
+          type: string
+        "@characterSetCode":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@currencyCodeListVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@currencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@encodingCode":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@filename":
+          "$ref": "#/components/schemas/xsd_string"
+        "@format":
+          "$ref": "#/components/schemas/xsd_string"
+        "@languageID":
+          "$ref": "#/components/schemas/xsd_language"
+        "@languageLocaleID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@listName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@listSchemaURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@listVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@mimeCode":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@name":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemaAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemaAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemaDataURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemaID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@schemaName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@schemaURI":
+          "$ref": "#/components/schemas/xsd_anyURI"
+        "@schemaVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@unitCode":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@unitCodeListAgencyID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@unitCodeListAgencyName":
+          "$ref": "#/components/schemas/xsd_string"
+        "@unitCodeListID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@unitCodeListVersionID":
+          "$ref": "#/components/schemas/xsd_normalizedString"
+        "@uri":
+          "$ref": "#/components/schemas/xsd_anyURI"
+      type: object
+      # - object
+      # - string
+      # - number
+      # - boolean
+    xsd_anyURI:
+      type: string
+    xsd_base64Binary:
+      type: string
+    xsd_dateTime:
+      type: string
+    xsd_decimal:
+      type: number
+    xsd_language:
+      pattern: "^([A-Za-z]{1,8}(\\-[0-9A-Za-z]{1,8})*)$"
+      type: string
+    xsd_normalizedString:
+      type: string
+    xsd_string:
+      type: string
+    xsd_token:
+      type: string
